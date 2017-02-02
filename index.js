@@ -25,6 +25,7 @@ class RealizationCheckMiddleware {
               realized.push(realized.type);
             }
           } else {
+            console.log(this.app.dependencies[d]);
             break;
           }
         }
