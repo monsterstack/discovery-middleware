@@ -47,4 +47,4 @@ class RealizationCheckMiddleware {
 
 }
 
-module.exports = RealizationCheckMiddleware;
+module.exports.RealizationCheckMiddleware = RealizationCheckMiddleware;
