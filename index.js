@@ -11,6 +11,7 @@ class RealizationCheckMiddleware {
   dependenciesAreRealized() {
     return (req, res, next) => {
       let proxy = this.app.proxy;
+      console.log("Checking dependencies");
       proxy.table().then((cache) => {
         // Where do I get dependent service types?
         let realized = [];
@@ -18,6 +19,8 @@ class RealizationCheckMiddleware {
         for(let item in cache) {
           realized.push(cache[item].type);
         }
+
+        console.log(realized);
 
         let fullyRealized = true;
         let missing = null;
