@@ -16,7 +16,6 @@ class RealizationCheckMiddleware {
         let realized = [];
         console.log(this.app.dependencies);
         let fullyRealized = false;
-        let missingDepName = null;
 
         for(let d in this.app.dependencies) {
           let realizedDep = _.find(cache, {type:this.app.dependencies[d]});
@@ -27,7 +26,6 @@ class RealizationCheckMiddleware {
               realized.push(realized.type);
             }
           } else {
-            missingDepName = this.app.dependencies[d];
             break;
           }
         }
@@ -44,7 +42,7 @@ class RealizationCheckMiddleware {
           next();
         } else {
           res.status(HttpStatus.SERVICE_UNAVAILABLE).send({
-            errorMessage: `Missing dependency ${missingDepName}`
+            errorMessage: `Missing dependency`
           });
         }
       }).catch((err) => {
