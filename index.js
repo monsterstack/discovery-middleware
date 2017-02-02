@@ -22,7 +22,7 @@ class RealizationCheckMiddleware {
           let realizedDep = _.find(cache, {type:typeToCheck});
           if(realizedDep) {
             console.log(realizedDep.type);
-            realized.push(realized.type);
+            realized.push(realizedDep.type);
           } else {
             console.log(`Missing type ${this.app.dependencies[d]}`);
             break;
