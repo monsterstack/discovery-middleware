@@ -9,9 +9,8 @@ class RealizationCheckMiddleware {
   }
 
   dependenciesAreRealized() {
-    let proxy = this.app.proxy;
-
     return (req, res, next) => {
+      let proxy = this.app.proxy;
       proxy.table().then((cache) => {
         // Where do I get dependent service types?
         let realized = [];
