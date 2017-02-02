@@ -5,8 +5,6 @@ const _ = require('lodash');
 class RealizationCheckMiddleware {
   constructor(app) {
     this.app = app;
-
-    this.dependencies = app.dependencies || [];
   }
 
   dependenciesAreRealized() {
@@ -16,9 +14,9 @@ class RealizationCheckMiddleware {
       proxy.table().then((cache) => {
         // Where do I get dependent service types?
         let realized = [];
-        console.log(this.dependencies);
-        for(let d in this.dependencies) {
-          let realizedDep = _.find(cache, {type:this.dependencies[d]});
+        console.log(this.app.dependencies);
+        for(let d in this.app.dependencies) {
+          let realizedDep = _.find(cache, {type:this.app.dependencies[d]});
           console.log(realizedDep);
         }
 
