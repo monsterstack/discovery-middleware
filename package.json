@@ -1,14 +1,14 @@
 {
   "name": "discovery-middleware",
   "version": "1.0.0",
-  "description": "",
+  "description": "Middleware for discoverable services",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha ./tests/*.js"
   },
   "dependencies": {
     "http-status": "^1.0.0"
   },
-  "author": "",
+  "author": "zachary.rote@gmail.com",
   "license": "ISC"
 }
