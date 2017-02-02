@@ -1,7 +1,7 @@
 'use strict';
 const HttpStatus = require('http-status');
 
-class RealizationCheck {
+class RealizationCheckMiddleware {
   constructor(app) {
     this.app = app;
 
@@ -47,4 +47,4 @@ class RealizationCheck {
 
 }
 
-module.exports = RealizationCheck;
+module.exports = RealizationCheckMiddleware;
