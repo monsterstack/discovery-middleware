@@ -15,20 +15,32 @@ class RealizationCheckMiddleware {
         // Where do I get dependent service types?
         let realized = [];
         console.log(this.app.dependencies);
+        let fullyRealized = false;
+        let missingDepName = null;
+
         for(let d in this.app.dependencies) {
           let realizedDep = _.find(cache, {type:this.app.dependencies[d]});
-          console.log(realizedDep);
+          if(realizedDep) {
+            if(realizedDep instanceof Array) {
+              realized.push(realizedDep[0].type);
+            } else {
+              realized.push(realized.type);
+            }
+          } else {
+            missingDepName = this.app.dependencies[d];
+            break;
+          }
         }
 
-        let fullyRealized = false;
-        let missing = null;
-
+        if(_.isEmpty(_.xor(this.app.dependencies, realized))) {
+          fullyRealized = true;
+        }
 
         if(fullyRealized) {
           next();
         } else {
           res.status(HttpStatus.SERVICE_UNAVAILABLE).send({
-            errorMessage: `Missing dependency ${missing}`
+            errorMessage: `Missing dependency ${missingDepName}`
           });
         }
       }).catch((err) => {
