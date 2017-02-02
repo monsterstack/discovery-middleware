@@ -1,5 +1,6 @@
 'use strict';
 const HttpStatus = require('http-status');
+const _ = require('lodash');
 
 class RealizationCheckMiddleware {
   constructor(app) {
@@ -16,21 +17,14 @@ class RealizationCheckMiddleware {
         // Where do I get dependent service types?
         let realized = [];
 
-        for(let item in cache) {
-          realized.push(cache[item].type);
-        }
-
-        console.log(realized);
-
-        let fullyRealized = true;
-        let missing = null;
         for(let d in this.dependencies) {
-          if(realized.indexOf(this.dependencies[d]) == -1) {
-            fullyRealized = false;
-            missing = this.dependencies[d];
-            break;
-          }
+          let realizedDep = _.find(cache, {type:this.dependencies[d]});
+          console.log(realizedDep);
         }
+
+        let fullyRealized = false;
+        let missing = null;
+
 
         if(fullyRealized) {
           next();
