@@ -34,8 +34,9 @@ class RealizationCheckMiddleware {
 
         console.log(realized);
         console.log(this.app.dependencies);
-        console.log(!_.isEmpty(_.xor(this.app.dependencies, realized)));
-        if(!_.isEmpty(_.xor(this.app.dependencies, realized))) {
+        console.log(missingDepName);
+        console.log(_.isEmpty(_.xor(this.app.dependencies, realized)));
+        if(_.isEmpty(_.xor(this.app.dependencies, realized))) {
           fullyRealized = true;
         }
 
