@@ -9,7 +9,7 @@ class RealizationCheckMiddleware {
   }
 
   dependenciesAreRealized() {
-    let proxy = app.proxy;
+    let proxy = this.app.proxy;
 
     return (req, res, next) => {
       proxy.table().then((cache) => {
