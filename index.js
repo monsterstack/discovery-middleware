@@ -33,7 +33,7 @@ class RealizationCheckMiddleware {
         }
 
         console.log(_.isEmpty(_.xor(this.app.dependencies, realized)));
-        if(_.isEmpty(_.xor(this.app.dependencies, realized))) {
+        if(!_.isEmpty(_.xor(this.app.dependencies, realized))) {
           fullyRealized = true;
         }
 
