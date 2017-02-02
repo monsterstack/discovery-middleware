@@ -5,7 +5,7 @@ class RealizationCheck {
   constructor(app) {
     this.app = app;
 
-    this.dependencies = app.serviceDependencies || [];
+    this.dependencies = app.dependencies || [];
   }
 
   dependenciesAreRealized() {
