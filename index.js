@@ -17,15 +17,14 @@ class RealizationCheckMiddleware {
         let fullyRealized = false;
 
         for(let d in this.app.dependencies) {
-          let realizedDep = _.find(cache, {type:this.app.dependencies[d]});
+          let typeToCheck = this.app.dependencies[d];
+          console.log(`Checking for type ${typeToCheck}`);
+          let realizedDep = _.find(cache, {type:typeToCheck});
           if(realizedDep) {
-            if(realizedDep instanceof Array) {
-              realized.push(realizedDep[0].type);
-            } else {
-              realized.push(realized.type);
-            }
+            console.log(realizedDep.type);
+            realized.push(realized.type);
           } else {
-            console.log(this.app.dependencies[d]);
+            console.log(`Missing type ${this.app.dependencies[d]}`);
             break;
           }
         }
