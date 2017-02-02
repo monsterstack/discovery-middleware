@@ -14,7 +14,6 @@ class RealizationCheckMiddleware {
       proxy.table().then((cache) => {
         // Where do I get dependent service types?
         let realized = [];
-        console.log(this.app.dependencies);
         let fullyRealized = false;
 
         for(let d in this.app.dependencies) {
@@ -30,9 +29,6 @@ class RealizationCheckMiddleware {
           }
         }
 
-        console.log(realized);
-        console.log(this.app.dependencies);
-        console.log(_.isEmpty(_.xor(this.app.dependencies, realized)));
         if(_.isEmpty(_.xor(this.app.dependencies, realized))) {
           fullyRealized = true;
         }
@@ -41,7 +37,7 @@ class RealizationCheckMiddleware {
           next();
         } else {
           res.status(HttpStatus.SERVICE_UNAVAILABLE).send({
-            errorMessage: `Missing dependency`
+            errorMessage: `Missing service dependency`
           });
         }
       }).catch((err) => {
