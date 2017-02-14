@@ -20,7 +20,7 @@ class RealizationCheckMiddleware {
         for(let d in this.app.dependencies) {
           let typeToCheck = this.app.dependencies[d];
           console.log(`Checking for type ${typeToCheck}`);
-          let realizedDep = _.find(cache, {type:typeToCheck});
+          let realizedDep = _.find(cache, {type:typeToCheck, status: 'Online'});
           if(realizedDep) {
             console.log(realizedDep.type);
             realized.push(realizedDep.type);
