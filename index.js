@@ -50,7 +50,9 @@ class RealizationCheckMiddleware {
         });
       } else {
         // No bound proxy.
-        res.status(HttpStatus.OK).send([]);
+        res.status(HttpStatus.SERVICE_UNAVAILABLE).send({
+            errorMessage: `Missing service dependency - all`
+        });
       }
     }
   }
