@@ -19,6 +19,8 @@ class RealizationCheckMiddleware {
           let missingType = null;
           console.log('Service dependencies');
           console.log(this.app.dependencies);
+          console.log('Cache');
+          console.log(cache);
           for(let d in this.app.dependencies) {
             let typeToCheck = this.app.dependencies[d];
             console.log(`Checking for type ${typeToCheck}`);
