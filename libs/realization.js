@@ -1,5 +1,5 @@
 'use strict';
-
+const config = require('config');
 const HttpStatus = require('http-status');
 const _ = require('lodash');
 
@@ -11,8 +11,9 @@ class RealizationCheckMiddleware {
   dependenciesAreRealized() {
     return (req, res, next) => {
       let proxy = this.app.proxy;
-      console.log("Checking dependencies");
-      if(proxy) {
+      if (config.realizationDependencyCheck === false) {
+        next();
+      } else if(proxy) {
         proxy.table().then((cache) => {
           // Where do I get dependent service types?
           let realized = [];
